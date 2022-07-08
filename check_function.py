@@ -34,8 +34,9 @@ def LogFunc(txt):
     f_result.write(txt+f_newline)
     
 def ErrorFunc(line_num, line, error, txt):
-    f_error.write("line_num : " + str(line_num) + f_newline + txt + f_newline)
     f_error.write("=================="+error+"======================" + f_newline)
+    f_error.write("line_num : " + str(line_num) + f_newline + txt + f_newline)
+    
     
 
 class Vat_Function:
@@ -46,12 +47,12 @@ class Vat_Function:
         self.file = file
 
         #로그폴더생성
-        createDirectory(file_path+"\Result")
-        createDirectory(file_path+"\Error")
-        #로그파일 오픈
+        createDirectory(os.path.join(file_path,"Result"))
+        createDirectory(os.path.join(file_path,"Error"))
 
-        f_result = open(file_path+"\\Result\\result_"+self.file+".txt", "w")
-        f_error  = open(file_path+"\\Error\\error_"+self.file+".txt", "w")
+        #로그파일 오픈
+        f_result = open(os.path.join(file_path,"Result","result_"+self.file+".txt"), "w")
+        f_error  = open(os.path.join(file_path,"Error","error_"+self.file+".txt"), "w")
         
     def __del__(self):
         if f_result != None:
