@@ -32,6 +32,7 @@ def substring(txt, idx, encoding=encode_mode):
             
 def LogFunc(txt):
     f_result.write(txt+f_newline)
+
     
 def ErrorFunc(line_num, line, error, txt):
     f_error.write("=================="+error+"======================" + f_newline)
@@ -69,8 +70,6 @@ class Vat_Function:
         if len_txt != "600":
             LogFunc("헤더 길이 오류 :"+ len_txt)
             return
-        else:
-            LogFunc("헤더 길이 :"+ len_txt)
         
         tmp, txt = substring(txt,2)
         
@@ -81,7 +80,8 @@ class Vat_Function:
         else:
             ErrorFunc(line_num,"","부가가치세 신고서 HEAD 자료구분 코드 오류",txt)
             return
-            
+        LogFunc("헤더 길이 :"+ len_txt)
+        
         LogFunc("1. 자료구분 :"+ tmp)
         
         tmp, txt = substring(txt,7)
@@ -508,6 +508,47 @@ class Vat_Function:
         else:
             LogFunc("Error : 신규타입 추가 필요 (" + f_type +")", "")
             
+    def function_I103400(self, f_type, txt):
+        if f_type == "17":
+            tmp, txt = substring(txt, 15)
+            LogFunc("3. 전체발행금액_합계 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("4. 신용카드등발행금액_합계 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("5. 현금영수증발행금액_합계 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("6. 발행금액합계_과세매출분 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("7. 신용카드등발행금액_과세매출분 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("8. 현금영수증발행금액_과세매출분 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("9. 발행금액합계_면세매출분 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("10. 신용카드등발행금액_면세매출분 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("11. 현금영수증발행금액_면세매출분 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("12. 발행금액합계_봉사료 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("13. 신용카드등발행금액_봉사료 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("14. 현금영수증발행금액_봉사료 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("15. 세금계산서교부금액(집계표) :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("16. 계산서교부금액(집계표) :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("17. 직불.기명식선불전자지급수단_합계 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("18. 직불.기명식선불전자지급수단_과세매출분 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("19. 직불.기명식선불전자지급수단_면세매출분 :"+ tmp)
+            tmp, txt = substring(txt, 13)
+            LogFunc("20. 직불.기명식선불전자지급수단_봉사료 :"+ tmp)
+            tmp, txt = substring(txt, 5)
+            LogFunc("21. 공란 :"+ tmp)
+        
     def function_I103600(self, f_type, txt):
         if f_type == "17":
             tmp, txt = substring(txt, 6)
